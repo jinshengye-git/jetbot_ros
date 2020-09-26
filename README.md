@@ -45,15 +45,37 @@ These Python libraries from Adafruit support the TB6612/PCA9685 motor drivers an
 $ sudo apt-get install python-pip
 
 # install Adafruit libraries
-$ pip install Adafruit-MotorHAT
-$ pip install Adafruit-SSD1306
+# NOTE: ROS is using python2 by default, you should check if  Adafruit-MotorHAT  and  Adafruit-SSD1306  are only supporting python3.
+# if you can not run  'from Adafruit_MotorHAT import Adafruit_MotorHAT'  under python2, you need install 
+
+$ sudo pip2 install Adafruit-MotorHAT
+$ sudo pip2 install Adafruit-SSD1306
 ```
+During install you might see the error from pip like:
+
+```
+
+...
+
+AttributeError: module 'enum' has no attribute 'IntFlag' 
+
+...
+
+```
+Then you should uninstall enum34 
+
+```
+sudo pip uninstall -y enum34
+```
+
 
 Grant your user access to the i2c bus:
 
 ```bash
 $ sudo usermod -aG i2c $USER
 ```
+
+
 
 Reboot the system for the changes to take effect.
 

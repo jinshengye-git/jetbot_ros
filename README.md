@@ -64,10 +64,12 @@ AttributeError: module 'enum' has no attribute 'IntFlag'
 ...
 
 ```
-Then you should uninstall enum34 
+Then you should uninstall enum34 first and install Adafruit-MotorHAT and Adafruit-SSD1306
 
 ```
-sudo pip uninstall -y enum34
+$ sudo pip uninstall -y enum34
+$ sudo pip2 install Adafruit-MotorHAT
+$ sudo pip2 install Adafruit-SSD1306
 ```
 
 

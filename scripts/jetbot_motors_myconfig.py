@@ -9,7 +9,8 @@ from std_msgs.msg import String
 def set_speed(motor_ID, value):
 	max_pwm = 115.0
 	speed = int(min(max(abs(value * max_pwm), 0), max_pwm))
-	a = b = 0
+	a,b = 0,0
+
 	if motor_ID == 1:
 		motor = motor_left
 		a, b = 1, 0
@@ -37,16 +38,23 @@ def set_speed(motor_ID, value):
 
 # stops all motors
 def all_stop():
-	motor_left.setSpeed(motor_left_ID, 0.0)
-	motor_right.setSpeed(motor_right_ID, 0.0)
+	motor_left.setSpeed(  0)
+	motor_right.setSpeed( 0)
 
-#	motor_left.run(Adafruit_MotorHAT.RELEASE)
-#	motor_right.run(Adafruit_MotorHAT.RELEASE)
+	motor_left.run(Adafruit_MotorHAT.RELEASE)
+	motor_right.run(Adafruit_MotorHAT.RELEASE)
 
 
 # directional commands (degree, speed)
 def on_cmd_dir(msg):
 	rospy.loginfo(rospy.get_caller_id() + ' cmd_dir=%s', msg.data)
+	# You should define your own motor motion 	
+	# for example:
+	# if msg.data.lower() == "0.1":
+	# 	set_speed(motor_left_ID, 0.1)
+	# 	set_speed(motor_right_ID,-0.1)
+
+
 
 # raw L/R motor commands (speed, speed)
 def on_cmd_raw(msg):
